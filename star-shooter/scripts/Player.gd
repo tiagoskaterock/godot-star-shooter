@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 export (int) var max_speed = 500
-var acceleration = 900
-var deacceleration = 500
+var acceleration = 2500
+var deacceleration = acceleration
 var input = Vector2.ZERO
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	check_move(delta)
 	check_shoot()
 	global_position.x = clamp(global_position.x, 50, 490)
