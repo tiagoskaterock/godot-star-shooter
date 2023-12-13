@@ -8,6 +8,8 @@ var input = Vector2.ZERO
 func _physics_process(delta):
 	check_move(delta)
 	check_shoot()
+	global_position.x = clamp(global_position.x, 50, 490)
+	global_position.y = clamp(global_position.y, 40, 920)
 	move_and_slide(input)
 	
 func check_move(delta):
