@@ -20,6 +20,9 @@ func _on_Laser_area_entered(area):
 		laser_hit()
 	if type == 'player_laser' and area.type == 'enemy_laser':
 		laser_hit()
+	if area.type == 'player':
+		area.get_parent().lose_life()
+		laser_hit()
 		
 func laser_hit():
 	speed = 0

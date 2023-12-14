@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://star-shooter/assets/player.png" type="Texture" id=1]
 [ext_resource path="res://star-shooter/scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://star-shooter/assets/explode.wav" type="AudioStream" id=3]
+[ext_resource path="res://star-shooter/scripts/Player_Area2D.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 42.5, 29 )
@@ -14,6 +15,7 @@ extents = Vector2( 42.5, 29 )
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -0.5, 0 )
@@ -30,4 +32,9 @@ shape = SubResource( 2 )
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
+[node name="TimerToRespawn" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="TimerToRespawn" to="." method="_on_TimerToRespawn_timeout"]

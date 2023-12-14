@@ -8,6 +8,7 @@ var min_speed_to_move = 15
 var intitial_position = Vector2(256, 872)
 var lives = 5
 var poinst = 0
+var type = 'player'
 
 func _physics_process(delta):
 	check_min_speed()
@@ -79,9 +80,7 @@ func _on_Area2D_area_entered(area):
 	
 func player_die():
 	$Explosion.play()
-	lose_life()
-	reset_position()
-	reset_speed()
+	lose_life()	
 	
 func reset_position():
 	position = intitial_position
@@ -91,5 +90,18 @@ func reset_speed():
 	input.y = 0
 	
 func lose_life():
-	lives -= 1
+	lives -= 1	
+	hide_player()
+	$TimerToRespawn.start()
 	print("Player Lives: " + str(lives))
+
+func _on_TimerToRespawn_timeout():
+	reset_position()
+	reset_speed()
+	show_player()
+	
+func hide_player():
+	visible = false  # Oculta o KinematicBody2D inteiro
+	
+func show_player():
+	visible = true
