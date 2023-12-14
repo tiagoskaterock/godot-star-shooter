@@ -36,5 +36,8 @@ stream = ExtResource( 3 )
 wait_time = 3.0
 one_shot = true
 
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 0, -41 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="TimerToRespawn" to="." method="_on_TimerToRespawn_timeout"]

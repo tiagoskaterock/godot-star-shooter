@@ -7,8 +7,11 @@ var input = Vector2.ZERO
 var min_speed_to_move = 15
 var intitial_position = Vector2(256, 872)
 var lives = 5
-var poinst = 0
+var points = 0
 var type = 'player'
+var Laser = preload("res://star-shooter/scenes/PlayerLaser.tscn")
+signal spawn_laser(Laser, location)
+onready var muzzle = $Muzzle
 
 func _physics_process(delta):
 	check_min_speed()
@@ -70,8 +73,8 @@ func deaccelerate_vertical(delta):
 	if input.y > 0: input.y -= deacceleration * delta
 
 func check_shoot():
-	if Input.is_action_just_pressed("shoot"):
-		print('shoot')
+	if Input.is_action_just_pressed("shoot") and visible:		
+		emit_signal("spawn_laser", Laser, muzzle.global_position)
 
 func _on_Area2D_area_entered(area):
 	if area.type == 'enemy':
@@ -82,8 +85,7 @@ func player_die():
 	$Explosion.play()
 	lose_life()	
 	
-func reset_position():
-	position = intitial_position
+func reset_position(): position = intitial_position
 	
 func reset_speed():
 	input.x = 0
@@ -100,8 +102,10 @@ func _on_TimerToRespawn_timeout():
 	reset_speed()
 	show_player()
 	
-func hide_player():
-	visible = false  # Oculta o KinematicBody2D inteiro
+func hide_player(): visible = false 
 	
-func show_player():
-	visible = true
+func show_player(): visible = true
+
+func add_points(points_added): 
+	points += points_added
+	print(points)
