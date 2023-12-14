@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://star-shooter/scripts/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://star-shooter/scenes/DeadFX.tscn" type="PackedScene" id=2]
+[ext_resource path="res://star-shooter/scenes/HitFX.tscn" type="PackedScene" id=3]
+[ext_resource path="res://star-shooter/scenes/TimerToDie.tscn" type="PackedScene" id=4]
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource( 1 )
@@ -8,3 +11,11 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HitFX" parent="." instance=ExtResource( 3 )]
+
+[node name="DeadFX" parent="." instance=ExtResource( 2 )]
+
+[node name="TimerToDie" parent="." instance=ExtResource( 4 )]
+
+[connection signal="timeout" from="TimerToDie" to="." method="_on_TimerToDie_timeout"]

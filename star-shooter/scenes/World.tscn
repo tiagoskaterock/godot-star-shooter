@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://star-shooter/assets/background.png" type="Texture" id=1]
 [ext_resource path="res://star-shooter/scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://star-shooter/scenes/NormalEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://star-shooter/scenes/DiverEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://star-shooter/scenes/PlayerLaser.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node2D"]
 
@@ -14,13 +15,35 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 540, 960 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, 872 )
+position = Vector2( 192, 864 )
 
 [node name="NormalEnemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 376, 344 )
 speed = 0
 
 [node name="DiverEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 128, 75 )
+position = Vector2( 152, 192 )
 speed = 0
 health = 1
+
+[node name="PlayerLaser" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 760 )
+
+[node name="PlayerLaser2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 263, 272 )
+type = "enemy_laser"
+
+[node name="PlayerLaser3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 256, 808 )
+
+[node name="PlayerLaser4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 136, 688 )
+
+[node name="PlayerLaser5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 832 )
+
+[node name="PlayerLaser6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 392, 1056 )
+
+[node name="PlayerLaser7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 1136 )
