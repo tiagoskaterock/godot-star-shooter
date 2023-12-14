@@ -17,7 +17,10 @@ region_rect = Rect2( 0, 0, 540, 960 )
 position = Vector2( 256, 872 )
 
 [node name="NormalEnemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 280, 104 )
+position = Vector2( 376, 344 )
+speed = 0
 
 [node name="DiverEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 80, 96 )
+position = Vector2( 128, 75 )
+speed = 0
+health = 1
