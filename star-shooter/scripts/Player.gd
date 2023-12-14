@@ -78,7 +78,7 @@ func check_shoot():
 
 func _on_Area2D_area_entered(area):
 	if area.type == 'enemy':
-		area.enemy_hit()
+		area.enemy_hit()		
 		player_die()	
 	
 func player_die():

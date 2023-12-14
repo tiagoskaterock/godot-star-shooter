@@ -1,28 +1,44 @@
 extends Area2D
 
-var speed = 700
+var speed
 var vertical_direction
 export var type = 'player_laser'
 export (int) var damage = 1
 
 func _ready():
-	if type == 'player_laser': vertical_direction = -1
-	elif type == 'enemy_laser': vertical_direction = 1
+	check_speed()
+	check_direction()
 
 func _physics_process(delta):
+	move_laser(delta)
+	
+func check_speed():
+	if type == 'player_laser': speed = 1800
+	elif type == 'enemy_laser': speed = 700
+	
+func move_laser(delta):
 	global_position.y += speed * vertical_direction * delta
 	
+func check_direction():
+	if type == 'player_laser': vertical_direction = -1
+	elif type == 'enemy_laser': vertical_direction = 1
+	
 func _on_Laser_area_entered(area):	
-	check_is_player_laser_hits_enemy(area)
+	check_if_player_laser_hits_enemy(area)
+	check_if_laser_hits_player(area)
 	if type == 'enemy_laser' and area.type == "player_laser":
 		laser_hit()
 	if type == 'player_laser' and area.type == 'enemy_laser':		
 		laser_hit()
+	
+func check_if_laser_hits_player(area):	
 	if area.type == 'player' and type != 'player_laser':
-		area.get_parent().lose_life()
-		laser_hit()
+		var player = area.get_parent()
+		if player.visible:
+			player.lose_life()
+			laser_hit()
 		
-func check_is_player_laser_hits_enemy(area):
+func check_if_player_laser_hits_enemy(area):
 	if type == 'player_laser' and area.type == 'enemy':
 		get_parent().get_child(1).add_points(100)
 		area.enemy_hit()

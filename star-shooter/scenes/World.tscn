@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://star-shooter/assets/background.png" type="Texture" id=1]
 [ext_resource path="res://star-shooter/scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://star-shooter/scenes/NormalEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://star-shooter/scenes/DiverEnemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://star-shooter/scripts/World.gd" type="Script" id=5]
+[ext_resource path="res://star-shooter/scenes/ShoottingEnemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://star-shooter/scripts/World.gd" type="Script" id=8]
 
 [node name="World" type="Node2D"]
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -16,15 +17,20 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 540, 960 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 192, 864 )
+position = Vector2( 243, 816 )
 
 [node name="NormalEnemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 376, 344 )
-speed = 0
+position = Vector2( 418, -104 )
 
 [node name="DiverEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 152, 192 )
-speed = 0
+position = Vector2( 72, -104 )
+speed = 700
 health = 1
 
+[node name="ShoottingEnemy" parent="." instance=ExtResource( 7 )]
+position = Vector2( 243, -72 )
+speed = 100
+can_shoot = true
+
 [connection signal="spawn_laser" from="Player" to="." method="_on_Player_spawn_laser"]
+[connection signal="enemy_spawn_laser" from="ShoottingEnemy" to="." method="_on_ShoottingEnemy_enemy_spawn_laser"]
