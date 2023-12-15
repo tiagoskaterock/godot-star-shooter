@@ -123,7 +123,7 @@ func show_player():
 	
 func add_points(points_added): 
 	points += points_added
-	print(points)
+	get_parent().get_child(6).update_score(points)
 
 func _on_TimerInvencible_timeout():
 	is_blinking = false

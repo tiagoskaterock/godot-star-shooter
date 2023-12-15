@@ -4,8 +4,9 @@ var speed
 var vertical_direction
 export var type = 'player_laser'
 export (int) var damage = 1
-var points_added_by_hit = 100
-var points_added_by_diver_enemy = 500
+var points_added_by_hit = 75
+var points_added_by_diver_enemy = 200
+var points_added_by_normal_enemy = 50
 var enemy_laser_speed = 700
 var player_laser_speed = 2000
 
@@ -54,8 +55,12 @@ func check_if_player_laser_hits_enemy(area):
 func add_points_by_enemy(area):
 	var points_added = points_added_by_hit
 	var player = get_parent().get_child(1)
-	if area.name == 'DiverEnemy':
+	var enemy = area.enemy_type
+	print(enemy)
+	if enemy == 'diver':
 		points_added = points_added_by_diver_enemy
+	elif enemy == 'normal':
+		points_added = points_added_by_normal_enemy
 	player.add_points(points_added)
 		
 func play_laser_fx_01():
