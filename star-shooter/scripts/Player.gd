@@ -12,13 +12,19 @@ var type = 'player'
 var Laser = preload("res://star-shooter/scenes/PlayerLaser.tscn")
 signal spawn_laser(Laser, location)
 onready var muzzle = $Muzzle
+var is_blinking = false
 
 func _physics_process(delta):
+	check_if_is_blinking()
 	check_min_speed()
 	check_move(delta)
 	check_shoot()
 	limit_on_screen()
 	move_and_slide(input)
+	
+func check_if_is_blinking():
+	if is_blinking: $Sprite.visible = !$Sprite.visible
+	else: $Sprite.visible = true
 	
 func limit_on_screen():
 	global_position.x = clamp(global_position.x, 50, 490)
@@ -111,10 +117,15 @@ func _disable_collision_shape():
 	$Area2D/CollisionShape2D.disabled = true
 	
 func show_player(): 
-	visible = true
-	$CollisionShape2D.disabled = false
-	$Area2D/CollisionShape2D.disabled = false
+	visible = true	
+	is_blinking = true
+	$TimerInvencible.start()
 	
 func add_points(points_added): 
 	points += points_added
 	print(points)
+
+func _on_TimerInvencible_timeout():
+	is_blinking = false
+	$CollisionShape2D.disabled = false
+	$Area2D/CollisionShape2D.disabled = false
