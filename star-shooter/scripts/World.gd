@@ -43,7 +43,6 @@ func spawn_shooting_enemy(x_position):
 	
 func choose_random_enemy(x_position):
 	var numero_aleatorio = randi() % 3 + 1
-	print(numero_aleatorio)
 	if numero_aleatorio == 1: spawn_normal_enemy(x_position)
 	elif numero_aleatorio == 2: spawn_diver_enemy(x_position)
 	elif numero_aleatorio == 3: spawn_shooting_enemy(x_position)
