@@ -55,7 +55,7 @@ func check_vertical_move(delta):
 		deaccelerate_vertical(delta)
 	if input.y > max_speed: input.y = max_speed
 	if input.y < -max_speed: input.y = -max_speed	
-				
+
 func go_left(delta): input.x -= acceleration * delta
 
 func go_right(delta): input.x += acceleration * delta
@@ -78,12 +78,13 @@ func check_shoot():
 
 func _on_Area2D_area_entered(area):
 	if area.type == 'enemy':
-		area.enemy_hit()		
+		area.enemy_dies()
 		player_die()	
 	
 func player_die():
 	$Explosion.play()
-	lose_life()	
+	hide_player()
+	lose_life()
 	
 func reset_position(): position = intitial_position
 	
@@ -92,8 +93,7 @@ func reset_speed():
 	input.y = 0
 	
 func lose_life():
-	lives -= 1	
-	hide_player()
+	lives -= 1		
 	$TimerToRespawn.start()
 	print("Player Lives: " + str(lives))
 
@@ -102,10 +102,19 @@ func _on_TimerToRespawn_timeout():
 	reset_speed()
 	show_player()
 	
-func hide_player(): visible = false 
+func hide_player(): 
+	visible = false
+	call_deferred('_disable_collision_shape')
 	
-func show_player(): visible = true
-
+func _disable_collision_shape():
+	$CollisionShape2D.disabled = true
+	$Area2D/CollisionShape2D.disabled = true
+	
+func show_player(): 
+	visible = true
+	$CollisionShape2D.disabled = false
+	$Area2D/CollisionShape2D.disabled = false
+	
 func add_points(points_added): 
 	points += points_added
 	print(points)

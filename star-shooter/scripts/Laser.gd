@@ -23,19 +23,22 @@ func check_direction():
 	if type == 'player_laser': vertical_direction = -1
 	elif type == 'enemy_laser': vertical_direction = 1
 	
-func _on_Laser_area_entered(area):	
+func _on_Laser_area_entered(area):
 	check_if_player_laser_hits_enemy(area)
 	check_if_laser_hits_player(area)
+	check_is_player_laser_hits_enemy_laser(area)
+	if type == 'player_laser' and area.type == 'enemy_laser':
+		laser_hit()
+		
+func check_is_player_laser_hits_enemy_laser(area):	
 	if type == 'enemy_laser' and area.type == "player_laser":
 		laser_hit()
-	if type == 'player_laser' and area.type == 'enemy_laser':		
-		laser_hit()
 	
-func check_if_laser_hits_player(area):	
+func check_if_laser_hits_player(area):
 	if area.type == 'player' and type != 'player_laser':
 		var player = area.get_parent()
 		if player.visible:
-			player.lose_life()
+			player.player_die()
 			laser_hit()
 		
 func check_if_player_laser_hits_enemy(area):
@@ -48,10 +51,14 @@ func play_laser_fx_01():
 	$LaserFX_01.play()
 		
 func laser_hit():
-	speed = 0
+	speed = 0	
 	$Sprite.visible = false
+	call_deferred('_disable_collision_shape')
 	$DeadFX.play()
-	$TimerToDie.start()		
+	$TimerToDie.start()
+	
+func _disable_collision_shape():
+	$CollisionShape2D.disabled = true
 
 func _on_TimerToDie_timeout():
 	queue_free()
