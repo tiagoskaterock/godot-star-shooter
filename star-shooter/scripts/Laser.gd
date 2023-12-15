@@ -54,9 +54,8 @@ func check_if_player_laser_hits_enemy(area):
 		
 func add_points_by_enemy(area):
 	var points_added = points_added_by_hit
-	var player = get_parent().get_child(1)
+	var player = get_parent().get_node('Player')
 	var enemy = area.enemy_type
-	print(enemy)
 	if enemy == 'diver':
 		points_added = points_added_by_diver_enemy
 	elif enemy == 'normal':

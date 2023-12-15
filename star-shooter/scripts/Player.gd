@@ -98,10 +98,13 @@ func reset_speed():
 	input.x = 0
 	input.y = 0
 	
-func lose_life():
+func lose_life():	
 	lives -= 1		
+	update_hud_lives()
 	$TimerToRespawn.start()
-	print("Player Lives: " + str(lives))
+	
+func update_hud_lives():	
+	get_parent().get_node('Hud/LivesLabel').text = "LIVES: " + str(lives)
 
 func _on_TimerToRespawn_timeout():
 	reset_position()
