@@ -4,6 +4,10 @@ var speed
 var vertical_direction
 export var type = 'player_laser'
 export (int) var damage = 1
+var points_added_by_hit = 100
+var points_added_by_diver_enemy = 500
+var enemy_laser_speed = 700
+var player_laser_speed = 2000
 
 func _ready():
 	check_speed()
@@ -13,8 +17,8 @@ func _physics_process(delta):
 	move_laser(delta)
 	
 func check_speed():
-	if type == 'player_laser': speed = 1800
-	elif type == 'enemy_laser': speed = 700
+	if type == 'player_laser': speed = player_laser_speed
+	elif type == 'enemy_laser': speed = enemy_laser_speed
 	
 func move_laser(delta):
 	global_position.y += speed * vertical_direction * delta
@@ -43,13 +47,20 @@ func check_if_laser_hits_player(area):
 		
 func check_if_player_laser_hits_enemy(area):
 	if type == 'player_laser' and area.type == 'enemy':
-		get_parent().get_child(1).add_points(100)
+		add_points_by_enemy(area)
 		area.enemy_hit()
 		queue_free()
 		
+func add_points_by_enemy(area):
+	var points_added = points_added_by_hit
+	var player = get_parent().get_child(1)
+	if area.name == 'DiverEnemy':
+		points_added = points_added_by_diver_enemy
+	player.add_points(points_added)
+		
 func play_laser_fx_01():
 	$LaserFX_01.play()
-		
+	
 func laser_hit():
 	speed = 0	
 	$Sprite.visible = false

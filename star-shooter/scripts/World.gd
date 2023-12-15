@@ -3,7 +3,7 @@ extends Node2D
 const NORMALENEMY = preload("res://star-shooter/scenes/NormalEnemy.tscn")
 const DIVERENEMY = preload("res://star-shooter/scenes/DiverEnemy.tscn")
 const SHOOTTINGENEMY = preload("res://star-shooter/scenes/ShoottingEnemy.tscn")
-	
+
 func _ready(): $BGMusic.play()	
 
 func _physics_process(delta): pass
