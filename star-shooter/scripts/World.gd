@@ -47,3 +47,10 @@ func choose_random_enemy(x_position):
 	if numero_aleatorio == 1: spawn_normal_enemy(x_position)
 	elif numero_aleatorio == 2: spawn_diver_enemy(x_position)
 	elif numero_aleatorio == 3: spawn_shooting_enemy(x_position)
+
+func _on_TimerTestToGainLives_timeout(): $Player.add_life()
+	
+func game_over(): 
+	print('Game Over')
+	get_tree().quit()
+	

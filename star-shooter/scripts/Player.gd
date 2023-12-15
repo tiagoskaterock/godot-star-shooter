@@ -6,7 +6,8 @@ var deacceleration = acceleration / 2
 var input = Vector2.ZERO
 var min_speed_to_move = 15
 var intitial_position = Vector2(256, 872)
-var lives = 5
+const max_lives = 2
+var lives = max_lives
 var points = 0
 var type = 'player'
 var Laser = preload("res://star-shooter/scenes/PlayerLaser.tscn")
@@ -99,19 +100,16 @@ func reset_speed():
 	input.y = 0
 	
 func lose_life():	
-	lives -= 1		
-	update_hud_lives()
-	$TimerToRespawn.start()
+	lives -= 1
+	if lives > 0: $TimerToRespawn.start()
+	else: get_parent().game_over()
 	
-func update_hud_lives():	
-	get_parent().get_node('Hud/LivesLabel').text = "LIVES: " + str(lives)
-
 func _on_TimerToRespawn_timeout():
 	reset_position()
 	reset_speed()
 	show_player()
 	
-func hide_player(): 
+func hide_player():
 	visible = false
 	call_deferred('_disable_collision_shape')
 	
@@ -132,3 +130,10 @@ func _on_TimerInvencible_timeout():
 	is_blinking = false
 	$CollisionShape2D.disabled = false
 	$Area2D/CollisionShape2D.disabled = false
+	
+func get_lives(): return lives
+	
+func add_life(): 
+	if lives < max_lives:		
+		lives += 1
+		print('lives: ' + str(lives))
