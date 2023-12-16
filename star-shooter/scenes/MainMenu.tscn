@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://star-shooter/assets/kenvector_future.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://star-shooter/fonts/font_54.tres" type="DynamicFont" id=2]
+[ext_resource path="res://star-shooter/scripts/ButtonStart.gd" type="Script" id=3]
+[ext_resource path="res://star-shooter/scripts/ButtonQuit.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+font_data = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -200.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.5
+color_ramp = SubResource( 4 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="LabelTitle" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 312.0
+margin_right = 525.0
+margin_bottom = 374.0
+custom_fonts/font = ExtResource( 2 )
+text = "Star Shooter"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 174.0
+margin_top = 452.0
+margin_right = 371.0
+margin_bottom = 572.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ButtonStart" type="Button" parent="VBoxContainer"]
+margin_right = 197.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 1 )
+text = "START"
+script = ExtResource( 3 )
+
+[node name="ButtonQuit" type="Button" parent="VBoxContainer"]
+margin_top = 78.0
+margin_right = 197.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 1 )
+text = "QUIT"
+script = ExtResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 280, 480 )
+amount = 100
+lifetime = 5.0
+preprocess = 5.0
+process_material = SubResource( 2 )
+
+[connection signal="pressed" from="VBoxContainer/ButtonStart" to="VBoxContainer/ButtonStart" method="_on_ButtonStart_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonQuit" to="VBoxContainer/ButtonQuit" method="_on_ButtonQuit_pressed"]

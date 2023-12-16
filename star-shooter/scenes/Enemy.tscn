@@ -18,4 +18,8 @@ script = ExtResource( 1 )
 
 [node name="TimerToDie" parent="." instance=ExtResource( 4 )]
 
+[node name="TimerToStopFlashing" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="TimerToDie" to="." method="_on_TimerToDie_timeout"]
+[connection signal="timeout" from="TimerToStopFlashing" to="." method="_on_TimerToStopFlashing_timeout"]

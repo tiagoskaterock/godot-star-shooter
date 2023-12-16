@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://star-shooter/scenes/DeathZone.tscn" type="PackedScene" id=1]
+
+[node name="DeathZoneGroup" type="Node"]
+
+[node name="DeathZoneTop" parent="." instance=ExtResource( 1 )]
+position = Vector2( -16, -248 )
+
+[node name="DeathZoneTop2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 1112 )

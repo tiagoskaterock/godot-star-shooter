@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bg_music.ogg-07ac4ffa4fc5c5d08d4bd574ec16c62b.oggstr"
+
+[deps]
+
+source_file="res://star-shooter/assets/bg_music.ogg"
+dest_files=[ "res://.import/bg_music.ogg-07ac4ffa4fc5c5d08d4bd574ec16c62b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
