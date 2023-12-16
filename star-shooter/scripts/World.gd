@@ -52,5 +52,8 @@ func _on_TimerTestToGainLives_timeout(): $Player.add_life()
 	
 func game_over(): 
 	print('Game Over')
-	get_tree().change_scene("res://star-shooter/scenes/MainMenu.tscn")
+	$CanvasLayerGameOver/GameOverMenu.visible = true
+	$BGMusic.stop()
+	$TimerToSpawnEnemy.stop()	
+	# get_tree().change_scene("res://star-shooter/scenes/MainMenu.tscn")
 	

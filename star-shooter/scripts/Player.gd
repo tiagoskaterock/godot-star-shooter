@@ -6,7 +6,7 @@ var deacceleration = acceleration / 2
 var input = Vector2.ZERO
 var min_speed_to_move = 15
 var intitial_position = Vector2(256, 872)
-const max_lives = 2
+const max_lives = 1
 var lives = max_lives
 var points = 0
 var type = 'player'
@@ -132,6 +132,8 @@ func _on_TimerInvencible_timeout():
 	$Area2D/CollisionShape2D.disabled = false
 	
 func get_lives(): return lives
+
+func get_points(): return points
 	
 func add_life(): 
 	if lives < max_lives:		
