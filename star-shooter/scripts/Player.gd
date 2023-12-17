@@ -149,4 +149,3 @@ func add_life():
 	if lives < max_lives:		
 		lives += 1
 		print('lives: ' + str(lives))
-

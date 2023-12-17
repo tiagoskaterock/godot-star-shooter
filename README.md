@@ -7,12 +7,9 @@
 </p>
 
 <p align="center">
-    The Class is here:
-    <a href="https://www.udemy.com/course/godot-beginner-course/">
-        Godot Beginner Course - Learn How To Make Games
-    </a>
+    Download Godot 3, import it in your projects and run.
 </p>
 
 <p align="center">
-    <img src="1.png" alt="Star Shooter" />
+    <img src="1.gif" alt="Star Shooter" />
 </p>
