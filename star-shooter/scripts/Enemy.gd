@@ -16,11 +16,12 @@ func _ready():
 
 func _physics_process(delta):
 	check_is_is_flashing()
-	check_if_is_blinking()	
+	check_if_is_blinking()
 	if is_alive: global_position.y += speed * delta
+	else: $Sprite.visible = false
 
 func check_if_is_blinking():
-	if is_blinking: $Sprite.visible = !$Sprite.visible
+	if is_blinking and is_alive: $Sprite.visible = ! $Sprite.visible
 	else: $Sprite.visible = true
 
 func check_is_is_flashing():		
@@ -48,12 +49,14 @@ func enemy_hit():
 func _on_TimerToStopFlashing_timeout(): is_flashing = false	
 	
 func enemy_dies():	
-	is_flashing = false
 	is_alive = false
+	$Sprite.visible = false
+	$Explosion.start()
+	is_flashing = false	
 	is_blinking = false
-	sprite_turns_red()
+#	sprite_turns_red()
 	call_deferred("_disable_collision_shape")
-	$DeadFX.play()	
+#	$DeadFX.play()
 	$TimerToDie.start()
 	
 func _disable_collision_shape(): $CollisionShape2D.disabled = true

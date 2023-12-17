@@ -54,6 +54,4 @@ func game_over():
 	print('Game Over')
 	$CanvasLayerGameOver/GameOverMenu.visible = true
 	$BGMusic.stop()
-	$TimerToSpawnEnemy.stop()	
-	# get_tree().change_scene("res://star-shooter/scenes/MainMenu.tscn")
-	
+	$TimerToSpawnEnemy.stop()

@@ -6,7 +6,7 @@ var deacceleration = acceleration / 2
 var input = Vector2.ZERO
 var min_speed_to_move = 15
 var intitial_position = Vector2(256, 872)
-const max_lives = 1
+const max_lives = 2
 var lives = max_lives
 var points = 0
 var type = 'player'
@@ -14,6 +14,7 @@ var Laser = preload("res://star-shooter/scenes/PlayerLaser.tscn")
 signal spawn_laser(Laser, location)
 onready var muzzle = $Muzzle
 var is_blinking = false
+var is_dead = false
 
 func _physics_process(delta):
 	check_if_is_blinking()
@@ -21,6 +22,7 @@ func _physics_process(delta):
 	check_move(delta)
 	check_shoot()
 	limit_on_screen()
+	if is_dead: $Sprite.visible = false
 	move_and_slide(input)
 	
 func check_if_is_blinking():
@@ -89,7 +91,12 @@ func _on_Area2D_area_entered(area):
 		player_die()	
 	
 func player_die():
-	$Explosion.play()
+	$Sprite.visible = false
+	is_dead = true
+	$Explosion.start()	
+	$TimerToDie.start()
+	
+func _on_TimerToDie_timeout():	
 	hide_player()
 	lose_life()
 	
@@ -99,7 +106,8 @@ func reset_speed():
 	input.x = 0
 	input.y = 0
 	
-func lose_life():	
+func lose_life():
+	print(lives)
 	lives -= 1
 	if lives > 0: $TimerToRespawn.start()
 	else: get_parent().game_over()
@@ -118,6 +126,8 @@ func _disable_collision_shape():
 	$Area2D/CollisionShape2D.disabled = true
 	
 func show_player(): 
+	is_dead = false
+	$Sprite.visible = true
 	visible = true	
 	is_blinking = true
 	$TimerInvencible.start()
@@ -139,3 +149,4 @@ func add_life():
 	if lives < max_lives:		
 		lives += 1
 		print('lives: ' + str(lives))
+
