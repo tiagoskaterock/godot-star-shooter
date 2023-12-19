@@ -12,7 +12,8 @@ func update_score(new_score):
 func update_difficulty(new_difficulty):
 	$ScoreDifficulty.text = "DIFFICULTY: " + str(new_difficulty)
 	
-func show_extra_life():	
+func show_extra_life():
+	$AudioExtraLife.play()
 	showing_extra_life = true
 	$TimerToStopExtraLife.start()
 	
