@@ -7,6 +7,7 @@ var difficulty = 1
 var difficulty_was_increased = false
 var divisor_to_increse_difficulty = 500
 var multiplier_to_increase_difficulty = 1
+var difficulty_levels_to_get_new_life = 3
 
 func _ready(): 
 	$Hud.update_difficulty(difficulty)
@@ -68,7 +69,10 @@ func check_difficulty():
 func increase_difficulty():
 	difficulty += 1
 	$Hud.update_difficulty(difficulty)
-	$Player.add_life()
+	check_if_add_life()
 	
 func get_difficulty():
 	return difficulty
+	
+func check_if_add_life():
+	if difficulty % difficulty_levels_to_get_new_life == 0: $Player.add_life()

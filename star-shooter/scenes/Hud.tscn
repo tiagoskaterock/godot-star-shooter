@@ -28,13 +28,17 @@ text = "DIFFICULTY: 0
 "
 
 [node name="LabelExtraLife" type="Label" parent="."]
-margin_left = 128.0
+margin_left = 144.0
 margin_top = 416.0
-margin_right = 412.0
+margin_right = 428.0
 margin_bottom = 491.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "EXTRA LIFE!
 "
+align = 1
+uppercase = true
 
 [node name="LivesSprites" parent="." instance=ExtResource( 1 )]
 position = Vector2( 22, 56 )
