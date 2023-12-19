@@ -18,4 +18,14 @@ custom_fonts/font = ExtResource( 3 )
 text = "SCORE: 0
 "
 
+[node name="ScoreDifficulty" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 72.0
+margin_right = 316.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 3 )
+text = "DIFFICULTY: 0
+"
+
 [node name="LivesSprites" parent="." instance=ExtResource( 1 )]
+position = Vector2( 22, 56 )

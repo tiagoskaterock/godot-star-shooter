@@ -1,7 +1,7 @@
 extends Area2D
 
-export (int) var speed = 150
-export (int) var health = 3
+export (int) var speed = 50
+export (int) var health = 1
 const type = 'enemy'
 export var can_shoot = false
 var is_alive = true

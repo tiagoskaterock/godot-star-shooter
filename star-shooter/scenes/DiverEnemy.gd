@@ -4,7 +4,7 @@ const accel = 20
 var enemy_type = 'diver'
 
 func _ready():
-	health = 1	
+	health = 1
 	
 func _physics_process(delta):	
 	accel_diver_enemy()

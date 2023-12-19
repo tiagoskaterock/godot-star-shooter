@@ -39,14 +39,9 @@ autoplay = true
 
 [node name="Hud" parent="." instance=ExtResource( 6 )]
 
-[node name="TimerTestToGainLives" type="Timer" parent="."]
-wait_time = 30.0
-autostart = true
-
 [node name="CanvasLayerGameOver" type="CanvasLayer" parent="."]
 
 [node name="GameOverMenu" parent="CanvasLayerGameOver" instance=ExtResource( 7 )]
 
 [connection signal="spawn_laser" from="Player" to="." method="_on_Player_spawn_laser"]
 [connection signal="timeout" from="TimerToSpawnEnemy" to="." method="_on_TimerToSpawnEnemy_timeout"]
-[connection signal="timeout" from="TimerTestToGainLives" to="." method="_on_TimerTestToGainLives_timeout"]

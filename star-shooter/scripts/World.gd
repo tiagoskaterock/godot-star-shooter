@@ -3,10 +3,17 @@ extends Node2D
 const NORMALENEMY = preload("res://star-shooter/scenes/NormalEnemy.tscn")
 const DIVERENEMY = preload("res://star-shooter/scenes/DiverEnemy.tscn")
 const SHOOTTINGENEMY = preload("res://star-shooter/scenes/ShoottingEnemy.tscn")
+var difficulty = 1
+var difficulty_was_increased = false
+var divisor_to_increse_difficulty = 500
+var multiplier_to_increase_difficulty = 1
 
-func _ready(): $BGMusic.play()	
+func _ready(): 
+	$Hud.update_difficulty(difficulty)
+	$BGMusic.play()
 
-func _physics_process(delta): pass
+func _process(delta):
+	check_difficulty()
 
 func _on_Player_spawn_laser(Laser, location):
 	var laser = Laser.instance()
@@ -47,11 +54,25 @@ func choose_random_enemy(x_position):
 	if numero_aleatorio == 1: spawn_normal_enemy(x_position)
 	elif numero_aleatorio == 2: spawn_diver_enemy(x_position)
 	elif numero_aleatorio == 3: spawn_shooting_enemy(x_position)
-
-func _on_TimerTestToGainLives_timeout(): $Player.add_life()
 	
 func game_over(): 
-	print('Game Over')
 	$CanvasLayerGameOver/GameOverMenu.visible = true
 	$BGMusic.stop()
 	$TimerToSpawnEnemy.stop()
+	
+func check_difficulty():
+	var points = $Player.get_points()
+	if ! difficulty_was_increased:
+		if points >= divisor_to_increse_difficulty * multiplier_to_increase_difficulty:
+			difficulty_was_increased = true
+			multiplier_to_increase_difficulty += 1
+			difficulty_was_increased = false
+			increase_difficulty()
+			
+func increase_difficulty():
+	difficulty += 1
+	$Hud.update_difficulty(difficulty)
+	$Player.add_life()
+	
+func get_difficulty():
+	return difficulty
