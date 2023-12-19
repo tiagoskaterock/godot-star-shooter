@@ -68,7 +68,7 @@ func check_difficulty():
 func increase_difficulty():
 	difficulty += 1
 	$Hud.update_difficulty(difficulty)
-	if difficulty % 5 == 0: $Player.add_life()
+	$Player.add_life()
 	
 func get_difficulty():
 	return difficulty

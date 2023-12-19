@@ -2,7 +2,6 @@ extends Timer
 
 func _on_TimerToSpawnEnemy_timeout():
 	var difficulty = get_parent().get_difficulty()
-	print(difficulty)
 	
 	if difficulty < 3: wait_time = 1
 	elif difficulty < 6: wait_time = .75
