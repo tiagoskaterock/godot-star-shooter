@@ -1,8 +1,8 @@
 extends "res://star-shooter/scripts/Enemy.gd"
 
 var enemy_type = 'normal'
-var max_health = 3
-var max_speed = 200
+var max_health = 2
+var max_speed = 500
 var difficulty
 
 func _ready():	
@@ -15,7 +15,4 @@ func _ready():
 func _process(delta):
 	if speed < max_speed: speed *= difficulty
 	else: speed = max_speed
-	
-	print(speed)
-	
 	

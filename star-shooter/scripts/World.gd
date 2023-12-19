@@ -27,10 +27,6 @@ func _onEnemySpawnLaser(Laser, location):
 	add_child(laser)
 	laser.play_laser_fx_01()
 	laser.global_position = location
-
-func _on_TimerToSpawnEnemy_timeout():
-	var x_position = $EnemySpawner.random_x()
-	choose_random_enemy(x_position)
 	
 func spawn_normal_enemy(x_position):
 	var new_enemy = NORMALENEMY.instance()
@@ -72,7 +68,7 @@ func check_difficulty():
 func increase_difficulty():
 	difficulty += 1
 	$Hud.update_difficulty(difficulty)
-	$Player.add_life()
+	if difficulty % 5 == 0: $Player.add_life()
 	
 func get_difficulty():
 	return difficulty

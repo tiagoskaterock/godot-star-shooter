@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://star-shooter/assets/background.png" type="Texture" id=1]
 [ext_resource path="res://star-shooter/scenes/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://star-shooter/scenes/GameOverMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://star-shooter/scripts/World.gd" type="Script" id=8]
 [ext_resource path="res://star-shooter/scenes/Stars.tscn" type="PackedScene" id=9]
+[ext_resource path="res://star-shooter/scenes/TimerToSpawnEnemy.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
@@ -27,8 +28,7 @@ position = Vector2( 243, 816 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, -336 )
 
-[node name="TimerToSpawnEnemy" type="Timer" parent="."]
-autostart = true
+[node name="TimerToSpawnEnemy" parent="." instance=ExtResource( 10 )]
 
 [node name="DeathZoneGroup" parent="." instance=ExtResource( 4 )]
 
@@ -44,4 +44,3 @@ autoplay = true
 [node name="GameOverMenu" parent="CanvasLayerGameOver" instance=ExtResource( 7 )]
 
 [connection signal="spawn_laser" from="Player" to="." method="_on_Player_spawn_laser"]
-[connection signal="timeout" from="TimerToSpawnEnemy" to="." method="_on_TimerToSpawnEnemy_timeout"]

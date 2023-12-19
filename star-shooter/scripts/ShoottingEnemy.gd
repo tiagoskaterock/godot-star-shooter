@@ -3,7 +3,7 @@ extends "res://star-shooter/scripts/Enemy.gd"
 signal enemy_spawn_laser(Laser, location)
 
 var enemy_type = 'shootting'
-var max_health = 3
+var max_health = 1
 var max_speed = 200
 
 func _ready():	
