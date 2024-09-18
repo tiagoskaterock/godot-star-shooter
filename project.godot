@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 
 window/size/width=540
 window/size/height=960
-window/size/resizable=false
 window/size/test_width=540
 window/size/test_height=960
 window/vsync/use_vsync=false

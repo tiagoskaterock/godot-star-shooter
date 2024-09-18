@@ -16,6 +16,7 @@ signal spawn_laser(Laser, location)
 onready var muzzle = $Muzzle
 var is_blinking = false
 var is_dead = false
+export var _ammo : int = 100
 
 func _physics_process(delta):
 	check_if_is_blinking()
@@ -83,13 +84,29 @@ func deaccelerate_vertical(delta):
 	if input.y > 0: input.y -= deacceleration * delta
 
 func check_shoot():
-	if Input.is_action_just_pressed("shoot") and visible:		
+	var can_shoot = visible and get_ammo() > 0
+	if Input.is_action_just_pressed("shoot") and can_shoot:
+		decrement_ammo()
 		emit_signal("spawn_laser", Laser, muzzle.global_position)
+
+func decrement_ammo():
+	set_ammo(get_ammo() - 1)
+	update_ammo_on_hud()
+	
+func set_ammo(new_ammo) -> void:
+	_ammo = new_ammo
+	
+func get_ammo() -> int:
+	return _ammo
+	
+func update_ammo_on_hud():
+	get_parent().get_node('Hud').update_ammo(get_ammo())
+	
 
 func _on_Area2D_area_entered(area):
 	if area.type == 'enemy':
 		area.enemy_dies()
-		player_die()	
+		player_die()
 	
 func player_die():
 	$Sprite.visible = false

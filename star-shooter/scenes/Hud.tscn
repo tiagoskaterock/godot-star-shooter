@@ -19,6 +19,16 @@ custom_fonts/font = ExtResource( 3 )
 text = "SCORE: 0
 "
 
+[node name="AmmoLabel" type="Label" parent="."]
+margin_left = 313.0
+margin_top = 20.0
+margin_right = 515.0
+margin_bottom = 95.0
+custom_fonts/font = ExtResource( 3 )
+text = "AMMO: 100
+"
+align = 2
+
 [node name="ScoreDifficulty" type="Label" parent="."]
 margin_left = 32.0
 margin_top = 72.0
