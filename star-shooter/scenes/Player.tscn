@@ -1,26 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://star-shooter/assets/player.png" type="Texture" id=1]
 [ext_resource path="res://star-shooter/scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://star-shooter/scenes/Explosion.tscn" type="PackedScene" id=3]
-[ext_resource path="res://star-shooter/scripts/Player_Area2D.gd" type="Script" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 42.5, 29 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 42.5, 29 )
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 42.5, 29 )
+
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 2
 script = ExtResource( 2 )
 _ammo = 50
-
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.5, 0 )
-shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
@@ -47,7 +40,10 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 1 )
+
 [connection signal="timeout" from="TimerToRespawn" to="." method="_on_TimerToRespawn_timeout"]
 [connection signal="timeout" from="TimerInvencible" to="." method="_on_TimerInvencible_timeout"]
 [connection signal="timeout" from="TimerToDie" to="." method="_on_TimerToDie_timeout"]

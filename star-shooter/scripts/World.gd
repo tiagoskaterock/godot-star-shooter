@@ -10,8 +10,7 @@ var multiplier_to_increase_difficulty = 1
 var difficulty_levels_to_get_new_life = 3
 
 func _ready(): 
-	$Hud.update_difficulty(difficulty)
-	$BGMusic.play()
+	$Hud.update_difficulty(difficulty)	
 
 func _process(delta):
 	check_difficulty()

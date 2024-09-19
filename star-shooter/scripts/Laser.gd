@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Laser
+
 var speed
 var vertical_direction
 export var type = 'player_laser'
@@ -32,25 +34,28 @@ func _on_Laser_area_entered(area):
 	check_if_player_laser_hits_enemy(area)
 	check_if_laser_hits_player(area)
 	check_is_player_laser_hits_enemy_laser(area)
-	if type == 'player_laser' and area.type == 'enemy_laser':
-		laser_hit()
+	if 'type' in area:
+		if type == 'player_laser' and area.type == 'enemy_laser':
+			laser_hit()
 		
 func check_is_player_laser_hits_enemy_laser(area):	
 	if type == 'enemy_laser' and area.type == "player_laser":
 		laser_hit()
 	
 func check_if_laser_hits_player(area):
-	if area.type == 'player' and type != 'player_laser':
-		var player = area.get_parent()
-		if player.visible:
-			player.player_die()
-			laser_hit()
+	if "type" in area:
+		if area.type == 'player' and type != 'player_laser':
+			var player = area.get_parent()
+			if player.visible:
+				player.player_die()
+				laser_hit()
 		
 func check_if_player_laser_hits_enemy(area):
-	if type == 'player_laser' and area.type == 'enemy':
-		add_points_by_enemy(area)
-		area.enemy_hit()
-		queue_free()
+	if 'type' in area:
+		if type == 'player_laser' and area.type == 'enemy':
+			add_points_by_enemy(area)
+			area.enemy_hit()
+			queue_free()
 		
 func add_points_by_enemy(area):
 	var points_added = points_added_by_hit
@@ -66,7 +71,7 @@ func play_laser_fx_01():
 	$LaserFX_01.play()
 	
 func laser_hit():
-	speed = 0	
+	speed = 0
 	$Sprite.visible = false
 	call_deferred('_disable_collision_shape')
 	$DeadFX.play()

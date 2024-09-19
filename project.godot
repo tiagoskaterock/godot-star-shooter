@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Ammo",
+"language": "GDScript",
+"path": "res://star-shooter/scripts/Ammo.gd"
+}, {
+"base": "Area2D",
+"class": "Laser",
+"language": "GDScript",
+"path": "res://star-shooter/scripts/Laser.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://star-shooter/scripts/Player.gd"
+} ]
+_global_script_class_icons={
+"Ammo": "",
+"Laser": "",
+"Player": ""
+}
+
 [application]
 
 config/name="Godot-start-shooter"
@@ -56,6 +78,12 @@ shoot={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777352,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="ammo"
+2d_physics/layer_3="laser"
 
 [physics]
 

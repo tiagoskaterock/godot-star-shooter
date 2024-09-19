@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://star-shooter/assets/background.png" type="Texture" id=1]
 [ext_resource path="res://star-shooter/scenes/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://star-shooter/scripts/World.gd" type="Script" id=8]
 [ext_resource path="res://star-shooter/scenes/Stars.tscn" type="PackedScene" id=9]
 [ext_resource path="res://star-shooter/scenes/TimerToSpawnEnemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://star-shooter/scenes/Ammo.tscn" type="PackedScene" id=11]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
@@ -35,12 +36,14 @@ position = Vector2( 240, -336 )
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.0
-autoplay = true
 
 [node name="Hud" parent="." instance=ExtResource( 6 )]
 
 [node name="CanvasLayerGameOver" type="CanvasLayer" parent="."]
 
 [node name="GameOverMenu" parent="CanvasLayerGameOver" instance=ExtResource( 7 )]
+
+[node name="Fuel" parent="." instance=ExtResource( 11 )]
+position = Vector2( 476, 113 )
 
 [connection signal="spawn_laser" from="Player" to="." method="_on_Player_spawn_laser"]

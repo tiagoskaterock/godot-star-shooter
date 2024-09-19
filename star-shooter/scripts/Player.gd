@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 export (int) var max_speed = 500
 var acceleration = 2000
 var deacceleration = acceleration / 2
@@ -95,9 +97,13 @@ func decrement_ammo():
 	
 func set_ammo(new_ammo) -> void:
 	_ammo = new_ammo
+	update_ammo_on_hud()
 	
 func get_ammo() -> int:
 	return _ammo
+	
+func add_ammo(how_much_ammo_more) -> void:
+	set_ammo(get_ammo() + how_much_ammo_more)
 	
 func update_ammo_on_hud():
 	get_parent().get_node('Hud').update_ammo(get_ammo())
@@ -166,3 +172,5 @@ func add_life():
 	if lives < max_lives:		
 		lives += 1
 		get_parent().get_node("Hud").show_extra_life()
+
+

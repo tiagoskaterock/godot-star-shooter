@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/recharge_ammo.mp3-2153f1e1d876d30c7fde8b507bf41dcd.mp3str"
+
+[deps]
+
+source_file="res://star-shooter/assets/recharge_ammo.mp3"
+dest_files=[ "res://.import/recharge_ammo.mp3-2153f1e1d876d30c7fde8b507bf41dcd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
