@@ -30,17 +30,11 @@ func check_direction():
 	if type == 'player_laser': vertical_direction = -1
 	elif type == 'enemy_laser': vertical_direction = 1
 	
+	
 func _on_Laser_area_entered(area):
-	check_if_player_laser_hits_enemy(area)
-	check_if_laser_hits_player(area)
-	check_is_player_laser_hits_enemy_laser(area)
-	if 'type' in area:
-		if type == 'player_laser' and area.type == 'enemy_laser':
-			laser_hit()
+	print(area)
 		
-func check_is_player_laser_hits_enemy_laser(area):	
-	if type == 'enemy_laser' and area.type == "player_laser":
-		laser_hit()
+		
 	
 func check_if_laser_hits_player(area):
 	if "type" in area:
@@ -50,12 +44,14 @@ func check_if_laser_hits_player(area):
 				player.player_die()
 				laser_hit()
 		
+		
 func check_if_player_laser_hits_enemy(area):
 	if 'type' in area:
 		if type == 'player_laser' and area.type == 'enemy':
 			add_points_by_enemy(area)
 			area.enemy_hit()
 			queue_free()
+		
 		
 func add_points_by_enemy(area):
 	var points_added = points_added_by_hit
@@ -67,8 +63,10 @@ func add_points_by_enemy(area):
 		points_added = points_added_by_normal_enemy
 	player.add_points(points_added)
 		
+
 func play_laser_fx_01():
 	$LaserFX_01.play()
+	
 	
 func laser_hit():
 	speed = 0
@@ -82,3 +80,10 @@ func _disable_collision_shape():
 
 func _on_TimerToDie_timeout():
 	queue_free()
+
+
+func _on_EnemyLaser_body_entered(body):
+	var player_class = load("res://star-shooter/scripts/Player.gd")
+	if body is player_class:
+		body.player_die()
+	

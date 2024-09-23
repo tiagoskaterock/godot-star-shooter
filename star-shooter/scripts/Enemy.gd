@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Enemy
+
 export (int) var speed = 50
 export (int) var health = 1
 const type = 'enemy'
@@ -24,7 +26,7 @@ func check_if_is_blinking():
 	if is_blinking and is_alive: $Sprite.visible = ! $Sprite.visible
 	else: $Sprite.visible = true
 
-func check_is_is_flashing():		
+func check_is_is_flashing():
 	if is_flashing and is_alive:
 		if red_state: 
 			sprite_turns_red()
@@ -48,7 +50,7 @@ func enemy_hit():
 	
 func _on_TimerToStopFlashing_timeout(): is_flashing = false	
 	
-func enemy_dies():	
+func enemy_dies():
 	is_alive = false
 	$Sprite.visible = false
 	$Explosion.start()

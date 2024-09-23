@@ -108,11 +108,7 @@ func add_ammo(how_much_ammo_more) -> void:
 func update_ammo_on_hud():
 	get_parent().get_node('Hud').update_ammo(get_ammo())
 	
-
-func _on_Area2D_area_entered(area):
-	if area.type == 'enemy':
-		area.enemy_dies()
-		player_die()
+		
 	
 func player_die():
 	$Sprite.visible = false
@@ -146,7 +142,7 @@ func hide_player():
 	
 func _disable_collision_shape():
 	$CollisionShape2D.disabled = true
-	$Area2D/CollisionShape2D.disabled = true
+	
 	
 func show_player(): 
 	is_dead = false

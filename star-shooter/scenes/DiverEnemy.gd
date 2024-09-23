@@ -1,5 +1,7 @@
 extends "res://star-shooter/scripts/Enemy.gd"
 
+class_name DiverEnemy
+
 const accel = 20
 var enemy_type = 'diver'
 

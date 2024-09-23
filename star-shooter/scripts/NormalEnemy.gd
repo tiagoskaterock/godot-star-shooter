@@ -1,5 +1,7 @@
 extends "res://star-shooter/scripts/Enemy.gd"
 
+class_name NormalEnemy
+
 var enemy_type = 'normal'
 var max_health = 2
 var max_speed = 500

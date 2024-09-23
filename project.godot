@@ -15,9 +15,24 @@ _global_script_classes=[ {
 "path": "res://star-shooter/scripts/Ammo.gd"
 }, {
 "base": "Area2D",
+"class": "DiverEnemy",
+"language": "GDScript",
+"path": "res://star-shooter/scenes/DiverEnemy.gd"
+}, {
+"base": "Area2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://star-shooter/scripts/Enemy.gd"
+}, {
+"base": "Area2D",
 "class": "Laser",
 "language": "GDScript",
 "path": "res://star-shooter/scripts/Laser.gd"
+}, {
+"base": "Area2D",
+"class": "NormalEnemy",
+"language": "GDScript",
+"path": "res://star-shooter/scripts/NormalEnemy.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -26,7 +41,10 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Ammo": "",
+"DiverEnemy": "",
+"Enemy": "",
 "Laser": "",
+"NormalEnemy": "",
 "Player": ""
 }
 
@@ -84,6 +102,7 @@ shoot={
 2d_physics/layer_1="player"
 2d_physics/layer_2="ammo"
 2d_physics/layer_3="laser"
+2d_physics/layer_4="enemy"
 
 [physics]
 
